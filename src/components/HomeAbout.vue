@@ -1,8 +1,10 @@
 <template>
-    <v-container class="py-5" >
-        <v-layout column class="py-5">
-            <v-flex class="display-2 text-center my-5">Quem somos</v-flex>
-            <v-flex class="px-5">
+    <v-container class="my-5">
+        <v-row class="mt-5">
+            <v-col class="display-2 text-center">Quem somos</v-col>
+        </v-row>
+        <v-row justify="center" class="mb-5">
+            <v-col md="8" sm="10" xs="12">
                 <p class="subheading ma-5 text-justify">
                     Hectare Agro ® é uma empresa sediada em Dourados-MS que
                     presta serviços de processamento de imagens e análises
@@ -20,8 +22,8 @@
                     download. Conheça mais sobre cada um de nossos serviços no
                     portfólio abaixo.
                 </p>
-            </v-flex>
-        </v-layout>
+            </v-col>
+        </v-row>
     </v-container>
 </template>
 

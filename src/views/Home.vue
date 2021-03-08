@@ -3,6 +3,7 @@
         <home-hero></home-hero>
         <home-about></home-about>
         <home-services></home-services>
+        <home-about></home-about>
     </span>
 </template>
 
