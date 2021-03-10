@@ -109,9 +109,9 @@
 
 <script>
 import ServicesService from '../service/ServicesService';
-import config from './../../config';
+import config from '../../config';
 export default {
-    name: 'HomeServices',
+    name: 'HomeService',
     data: () => ({
         host: config.apiHost + '/assets/',
         services: [],
@@ -128,7 +128,4 @@ export default {
 };
 </script>
 
-<style scoped>
-.description {
-}
-</style>
+<style scoped></style>

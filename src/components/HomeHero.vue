@@ -2,7 +2,7 @@
     <v-parallax
         class="home-hero"
         height="100vh"
-        :src="require ('@/assets/bg_main.jpg')"
+        :src="require('@/assets/bg_main.jpg')"
         style="max-height: 100vh;"
     >
         <v-row align="end" justify="center">
@@ -30,7 +30,7 @@
 
 <script>
 export default {
-    name: 'HomeHero',
+    name: 'HomeHero'
 };
 </script>
 
