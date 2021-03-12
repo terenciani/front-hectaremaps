@@ -110,7 +110,7 @@
             <v-card color="primary" dark>
                 <v-card-text>
                     <v-card-text>
-                        Aguarde! seu e-mail está sendo enviado!</v-card-text
+                        Aguarde! Seu e-mail está sendo enviado!</v-card-text
                     >
                     <v-progress-linear
                         indeterminate
