@@ -1,9 +1,5 @@
 <template>
-    <v-parallax
-        :src="require('@/assets/bg_services.jpg')"
-        height="650"
-        class="py-5"
-    >
+    <v-parallax :src="require('@/assets/bg_services.jpg')" height="700">
         <v-container>
             <v-row class="mt-5">
                 <v-col xs="12" class="display-2 text-center mb-5"
@@ -84,27 +80,6 @@
                 </v-carousel>
             </v-row>
         </v-container>
-        <!--<v-row class="d-none d-sm-flex mt-5">
-                <v-col
-                    v-for="service in services"
-                    :key="service.id"
-                    xs="12"
-                    sm="4"
-                    md="3"
-                >
-                    <v-card>
-                        <v-img
-                            :src="host + service.image"
-                            class="white--text align-end"
-                            gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)"
-                            height="200px"
-                        >
-                            <v-card-title v-text="service.name"></v-card-title>
-                        </v-img>
-                    </v-card>
-                </v-col>
-            </v-row>
-        -->
     </v-parallax>
 </template>
 

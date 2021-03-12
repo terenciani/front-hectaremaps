@@ -4,8 +4,8 @@
             <v-col cols="12" class="display-2 text-center mb-5"
                 >Contate-nos</v-col
             >
-            <v-row class="pb-0 mb-0">
-                <v-col cols="12" sm="6">
+            <v-row class="pb-0 px-5 mb-0" justify="space-between">
+                <v-col cols="12" md="5">
                     <div class="text-h5">Entre em contato conosco</div>
 
                     <div class="text-subtitle-1 mb-5">
@@ -44,7 +44,11 @@
                         >
                     </div>
                 </v-col>
-                <v-col cols="12" sm="6">
+                <v-col cols="12" class="hidden-md-and-up">
+                    <v-divider></v-divider>
+                </v-col>
+
+                <v-col cols="12" md="6">
                     <v-form ref="form" v-model="valid">
                         <v-row>
                             <v-col cols="12">

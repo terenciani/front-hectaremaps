@@ -60,7 +60,11 @@
                                     absolute
                                     color="#036358"
                                 >
-                                    <v-btn large color="primary accent-4">
+                                    <v-btn
+                                        large
+                                        color="primary accent-4"
+                                        to="/admin?plan"
+                                    >
                                         Contratar
                                     </v-btn>
                                 </v-overlay>
@@ -76,10 +80,12 @@
 <script>
 import PlanService from '../service/PlanService';
 import UtilFormatter from '../utils/UtilFormatter';
+import config from '../../config';
 
 export default {
     name: 'HomePlan',
     data: () => ({
+        adminPage: config.privateArea,
         plansAndItems: [],
         utilFormatter: UtilFormatter
     }),

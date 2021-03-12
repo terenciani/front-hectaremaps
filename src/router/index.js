@@ -2,6 +2,7 @@ import Vue from 'vue';
 import VueRouter from 'vue-router';
 import Home from '../views/Home.vue';
 import goTo from 'vuetify/es5/services/goto';
+import config from '../../config';
 
 Vue.use(VueRouter);
 
@@ -10,6 +11,15 @@ const routes = [
         path: '/',
         name: 'Home',
         component: Home
+    },
+    {
+        path: '/admin',
+        beforeEnter: to => {
+            window.open(
+                `${config.privateArea}${to.fullPath.substring(6)}`,
+                '_blank'
+            );
+        }
     }
 ];
 

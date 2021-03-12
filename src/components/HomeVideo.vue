@@ -9,7 +9,7 @@
                 <v-col cols="12" class="display-2 text-center mb-5"
                     >Equipamentos de Última Geração</v-col
                 >
-                <v-col cols="8">
+                <v-col cols="12" md="8">
                     <v-card color="teal lighten-2" dark>
                         <vue-video
                             :sources="video.sources"
@@ -30,7 +30,6 @@ export default {
         vueVideo
     },
     data: () => ({
-        email: {},
         video: {
             sources: [
                 {
