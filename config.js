@@ -1,4 +1,4 @@
 export default {
-    apiHost: 'http://localhost:3000',
+    apiHost: 'https://hectaremaps-api.herokuapp.com',
     decimalPlaces: 2
 };

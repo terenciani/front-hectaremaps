@@ -1,7 +1,7 @@
 <template>
     <v-parallax
         :src="require('@/assets/bg_services.jpg')"
-        height="1000px"
+        height="650"
         class="py-5"
     >
         <v-container>
@@ -38,10 +38,11 @@
                                         justify="space-around"
                                     >
                                         <v-col sm="6" md="6">
-                                            <v-card-title class="headline"
-                                                >Preço: R$
+                                            <v-card-title class="headline">
                                                 {{
-                                                    service.price
+                                                    utilFormatter.numberToMoney(
+                                                        service.price
+                                                    )
                                                 }}</v-card-title
                                             >
                                             <v-card-text
@@ -109,12 +110,14 @@
 
 <script>
 import ServicesService from '../service/ServicesService';
+import UtilFormatter from '../utils/UtilFormatter';
 import config from '../../config';
 export default {
     name: 'HomeService',
     data: () => ({
         host: config.apiHost + '/assets/',
         services: [],
+        utilFormatter: UtilFormatter,
         tab: null
     }),
     methods: {

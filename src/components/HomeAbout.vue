@@ -1,9 +1,9 @@
 <template>
-    <v-container class="my-5">
-        <v-row class="mt-5">
+    <v-container>
+        <v-row>
             <v-col class="display-2 text-center">Quem somos</v-col>
         </v-row>
-        <v-row justify="center" class="mb-5">
+        <v-row justify="center">
             <v-col md="8" sm="10" xs="12">
                 <p class="subheading ma-5 text-justify">
                     Hectare Agro ® é uma empresa sediada em Dourados-MS que

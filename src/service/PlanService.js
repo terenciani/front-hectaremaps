@@ -1,6 +1,6 @@
 'use strict';
 
-import API from './../Api';
+import API from '../Api';
 
 export default class PlanService {
     static async getAllPlansAndItems() {
