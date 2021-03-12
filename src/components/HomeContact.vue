@@ -185,7 +185,7 @@ export default {
             } finally {
                 this.loadingDialog = false;
                 this.emailResponse.active = true;
-                this.email = {}
+                this.email = {};
             }
         }
     }

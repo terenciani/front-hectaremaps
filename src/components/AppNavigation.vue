@@ -177,19 +177,13 @@ export default {
                 { title: 'Planos', route: '#plans' },
                 { title: 'Contato', route: '#contact' }
             ],
-            nameRules: [
-                v => !!v || 'O nome é obrigatório'
-            ],
-            lastNameRules: [
-                v => !!v || 'O sobrenome é obrigatório'
-            ],
+            nameRules: [v => !!v || 'O nome é obrigatório'],
+            lastNameRules: [v => !!v || 'O sobrenome é obrigatório'],
             emailRules: [
                 v => !!v || 'O e-mail é obrigatório',
                 v => /.+@.+\..+/.test(v) || 'Informe um e-mail válido.'
             ],
-            phoneRules: [
-                v => !!v || 'O telefone é obrigatório',
-            ],
+            phoneRules: [v => !!v || 'O telefone é obrigatório'],
             response: {
                 message: '',
                 type: 'success',
@@ -207,22 +201,18 @@ export default {
                 message: '',
                 type: 'success',
                 active: false
-            }
-            this.user = {}
+            };
+            this.user = {};
         },
         async submit() {
             if (!this.$refs.form.validate()) return;
             this.dialog = false;
             this.loadingDialog = true;
             try {
-                let resp = await RegisterService.signUp(
-                    this.user
-                );
-                this.response.message = resp.message
-                if(resp.status == 200)
-                    this.response.type = 'success';
-                else
-                    this.response.type = 'warning';
+                let resp = await RegisterService.signUp(this.user);
+                this.response.message = resp.message;
+                if (resp.status == 200) this.response.type = 'success';
+                else this.response.type = 'warning';
                 this.$refs.form.resetValidation();
                 this.$refs.form.reset();
             } catch (error) {
@@ -231,7 +221,7 @@ export default {
             } finally {
                 this.loadingDialog = false;
                 this.response.active = true;
-                this.user = {}
+                this.user = {};
             }
         }
     }
