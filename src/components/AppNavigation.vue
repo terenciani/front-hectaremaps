@@ -159,6 +159,7 @@
 </template>
 
 <script>
+import RegisterService from '../service/RegisterService';
 export default {
     name: 'AppNavigation',
     data() {
@@ -207,25 +208,31 @@ export default {
                 type: 'success',
                 active: false
             }
+            this.user = {}
         },
-        submit() {
+        async submit() {
             if (!this.$refs.form.validate()) return;
+            this.dialog = false;
             this.loadingDialog = true;
-            /*try {
-                this.emailResponse.message = await ContactService.sendEmail(
-                    this.email
+            try {
+                let resp = await RegisterService.signUp(
+                    this.user
                 );
-                this.emailResponse.type = 'success';
+                this.response.message = resp.message
+                if(resp.status == 200)
+                    this.response.type = 'success';
+                else
+                    this.response.type = 'warning';
                 this.$refs.form.resetValidation();
                 this.$refs.form.reset();
             } catch (error) {
-                this.emailResponse.message = error;
-                this.emailResponse.type = 'error';
+                this.response.message = error;
+                this.response.type = 'error';
             } finally {
                 this.loadingDialog = false;
-                this.emailResponse.active = true;
-            }*/
-            this.dialog = false;
+                this.response.active = true;
+                this.user = {}
+            }
         }
     }
 };

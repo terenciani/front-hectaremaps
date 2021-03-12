@@ -69,7 +69,7 @@
                             <v-col cols="12" md="6" class="pb-0">
                                 <v-text-field
                                     :rules="emailRules"
-                                    v-model="email.address"
+                                    v-model="email.email"
                                     type="email"
                                     outlined
                                     label="Insira seu e-mail"
@@ -185,6 +185,7 @@ export default {
             } finally {
                 this.loadingDialog = false;
                 this.emailResponse.active = true;
+                this.email = {}
             }
         }
     }
