@@ -44,7 +44,7 @@
             <v-toolbar-items>
                 <v-btn text to="/admin">ENTRAR</v-btn>
                 <v-btn text class="grey darken-3" @click.stop="dialog = true"
-                    >SOLCITAR CADASTRO</v-btn
+                    >SOLICITAR CADASTRO</v-btn
                 >
             </v-toolbar-items>
         </v-app-bar>

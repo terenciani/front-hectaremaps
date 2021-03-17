@@ -1,6 +1,6 @@
 <template>
     <v-parallax
-        :src="require('@/assets/bg_contact.jpg')"
+        :src="require('@/assets/bg_video.jpg')"
         height="650"
         class="py-5"
     >

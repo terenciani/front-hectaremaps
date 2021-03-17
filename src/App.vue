@@ -13,6 +13,9 @@ export default {
     name: 'App',
     components: {
         AppNavigation
+    },
+    beforeMount() {
+        this.$store.dispatch('loadHomeData');
     }
 };
 </script>
