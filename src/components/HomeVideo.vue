@@ -1,6 +1,6 @@
 <template>
     <v-parallax
-        :src="require('@/assets/bg_video.jpg')"
+        :src="videoData.background ? `${host}${videoData.background}` : ''"
         height="650"
         class="py-5"
     >
@@ -10,11 +10,12 @@
                     >Equipamentos de Última Geração</v-col
                 >
                 <v-col cols="12" md="8">
-                    <v-card color="teal lighten-2" dark>
-                        <vue-video
-                            :sources="video.sources"
-                            :options="video.options"
-                        ></vue-video>
+                    <v-card
+                        color="teal lighten-2"
+                        dark
+                        v-if="videoSources.length > 0"
+                    >
+                        <vue-video :sources="videoSources"></vue-video>
                     </v-card>
                 </v-col>
             </v-row>
@@ -23,6 +24,7 @@
 </template>
 
 <script>
+import config from '../../config';
 import vueVideo from 'vue-video';
 export default {
     name: 'HomeVideo',
@@ -30,15 +32,24 @@ export default {
         vueVideo
     },
     data: () => ({
-        video: {
-            sources: [
+        host: config.apiHost + '/assets/'
+    }),
+    computed: {
+        videoData() {
+            return this.$store.getters.getVideo
+                ? this.$store.getters.getVideo
+                : {};
+        },
+        videoSources() {
+            if (this.videoData?.src == '') return [];
+            return [
                 {
-                    src: require('@/assets/drone-lancamento.mp4'),
+                    src: `${this.host}${this.videoData.src}`,
                     type: 'video/mp4'
                 }
-            ]
+            ];
         }
-    })
+    }
 };
 </script>
 

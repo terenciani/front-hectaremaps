@@ -15,10 +15,7 @@ const routes = [
     {
         path: '/admin',
         beforeEnter: to => {
-            window.open(
-                `${config.privateArea}?r=${to.fullPath.substring(6)}`,
-                '_blank'
-            );
+            window.open(`${config.privateArea}?r=${to.fullPath.substring(7)}`);
         }
     }
 ];

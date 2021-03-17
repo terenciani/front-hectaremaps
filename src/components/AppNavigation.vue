@@ -4,6 +4,9 @@
             <v-list>
                 <template v-for="(item, index) in items">
                     <v-list-item link :key="index" :to="item.route">
+                        <v-list-item-icon>
+                            <v-icon>{{ item.icon }}</v-icon>
+                        </v-list-item-icon>
                         <v-list-item-title class="text-capitalize">
                             {{ item.title }}
                         </v-list-item-title>
@@ -11,12 +14,18 @@
                     <v-divider :key="`divider-${index}`"></v-divider>
                 </template>
                 <v-list-item link to="/admin">
+                    <v-list-item-icon>
+                        <v-icon>mdi-login</v-icon>
+                    </v-list-item-icon>
                     <v-list-item-title class="text-capitalize">
                         Entrar
                     </v-list-item-title>
                 </v-list-item>
                 <v-divider></v-divider>
                 <v-list-item link @click.stop="dialog = true">
+                    <v-list-item-icon>
+                        <v-icon>mdi-account-plus-outline</v-icon>
+                    </v-list-item-icon>
                     <v-list-item-title class="text-capitalize">
                         Solicitar Cadastro
                     </v-list-item-title>
@@ -52,7 +61,7 @@
         <v-dialog
             v-model="dialog"
             max-width="600"
-            :fullscreen="$vuetify.breakpoint.xs"
+            :fullscreen="$vuetify.breakpoint.xs || $vuetify.breakpoint.sm"
         >
             <v-card>
                 <v-toolbar dark color="teal">
@@ -79,35 +88,100 @@
                     <v-container class="py-5">
                         <v-form ref="form" v-model="valid">
                             <v-row>
-                                <v-col cols="12" md="6">
+                                <v-col
+                                    cols="12"
+                                    md="6"
+                                    :class="
+                                        $vuetify.breakpoint.xs ? 'py-2' : ''
+                                    "
+                                >
                                     <v-text-field
-                                        label="Nome*"
+                                        label="Nome *"
                                         v-model="user.name"
                                         required
                                         :rules="nameRules"
                                     ></v-text-field>
                                 </v-col>
-                                <v-col cols="12" md="6">
+                                <v-col
+                                    cols="12"
+                                    md="6"
+                                    :class="
+                                        $vuetify.breakpoint.xs ? 'py-2' : ''
+                                    "
+                                >
                                     <v-text-field
-                                        label="Sobrenome*"
+                                        label="Sobrenome *"
                                         :rules="lastNameRules"
                                         v-model="user.lastname"
                                         required
                                     ></v-text-field>
                                 </v-col>
-                                <v-col cols="12" md="6">
+                                <v-col
+                                    cols="12"
+                                    md="6"
+                                    :class="
+                                        $vuetify.breakpoint.xs ? 'py-2' : ''
+                                    "
+                                >
                                     <v-text-field
-                                        label="E-mail*"
+                                        label="E-mail *"
                                         :rules="emailRules"
                                         v-model="user.email"
                                         required
                                     ></v-text-field>
                                 </v-col>
-                                <v-col cols="12" md="6">
+                                <v-col
+                                    cols="12"
+                                    md="6"
+                                    :class="
+                                        $vuetify.breakpoint.xs ? 'py-2' : ''
+                                    "
+                                >
                                     <v-text-field
                                         :rules="phoneRules"
-                                        label="Telefone de contato*"
+                                        v-mask="mask"
+                                        placeholder="(99) 9 9999-9999"
+                                        label="Telefone de contato *"
                                         v-model="user.phone"
+                                        required
+                                    ></v-text-field>
+                                </v-col>
+                                <v-col
+                                    cols="12"
+                                    md="6"
+                                    :class="
+                                        $vuetify.breakpoint.xs ? 'py-2' : ''
+                                    "
+                                >
+                                    <v-text-field
+                                        :append-icon="
+                                            show ? 'mdi-eye' : 'mdi-eye-off'
+                                        "
+                                        :type="show ? 'text' : 'password'"
+                                        :rules="passwordRules"
+                                        hint="A senha deve ter no mínimo 8 characteres."
+                                        label="Senha de acesso *"
+                                        v-model="user.password"
+                                        required
+                                        @click:append="show = !show"
+                                    ></v-text-field>
+                                </v-col>
+                                <v-col
+                                    cols="12"
+                                    md="6"
+                                    :class="
+                                        $vuetify.breakpoint.xs ? 'py-2' : ''
+                                    "
+                                >
+                                    <v-text-field
+                                        :rules="confirmRules"
+                                        :append-icon="
+                                            show2 ? 'mdi-eye' : 'mdi-eye-off'
+                                        "
+                                        :type="show2 ? 'text' : 'password'"
+                                        label="Confirmação de Senha *"
+                                        v-model="user.confirmpass"
+                                        @click:append="show2 = !show2"
                                         required
                                     ></v-text-field>
                                 </v-col>
@@ -160,6 +234,7 @@
 
 <script>
 import RegisterService from '../service/RegisterService';
+
 export default {
     name: 'AppNavigation',
     data() {
@@ -167,23 +242,60 @@ export default {
             user: {},
             dialog: false,
             valid: true,
+            show: false,
+            show2: false,
+            mask: [
+                '(',
+                /\d/,
+                /\d/,
+                ') ',
+                /\d/,
+                ' ',
+                /\d/,
+                /\d/,
+                /\d/,
+                /\d/,
+                '-',
+                /\d/,
+                /\d/,
+                /\d/,
+                /\d/
+            ],
             loadingDialog: false,
             appTitle: 'Hectare Maps',
             drawer: false,
             items: [
-                { title: 'Home', route: '/' },
-                { title: 'Sobre', route: '#about' },
-                { title: 'Serviços', route: '#services' },
-                { title: 'Planos', route: '#plans' },
-                { title: 'Contato', route: '#contact' }
+                { title: 'Home', route: '/', icon: 'mdi-home-outline' },
+                {
+                    title: 'Sobre',
+                    route: '#about',
+                    icon: 'mdi-book-open-page-variant-outline'
+                },
+                { title: 'Serviços', route: '#services', icon: 'mdi-drone' },
+                { title: 'Planos', route: '#plans', icon: 'mdi-cart-outline' },
+                {
+                    title: 'Contato',
+                    route: '#contact',
+                    icon: 'mdi-card-account-phone-outline'
+                }
             ],
-            nameRules: [v => !!v || 'O nome é obrigatório'],
-            lastNameRules: [v => !!v || 'O sobrenome é obrigatório'],
+            nameRules: [v => !!v || 'O nome é obrigatório.'],
+            lastNameRules: [v => !!v || 'O sobrenome é obrigatório.'],
             emailRules: [
                 v => !!v || 'O e-mail é obrigatório',
                 v => /.+@.+\..+/.test(v) || 'Informe um e-mail válido.'
             ],
-            phoneRules: [v => !!v || 'O telefone é obrigatório'],
+            phoneRules: [v => !!v || 'O telefone é obrigatório.'],
+            passwordRules: [
+                v => !!v || 'A senha é obrigatória.',
+                v =>
+                    (v && v.length >= 8) ||
+                    'A senha deve ter no mínimo 8 characteres.'
+            ],
+            confirmRules: [
+                v => !!v || 'A confirmação de senha é obrigatória.',
+                v => (v && v == this.user.password) || 'As senhas não conferem.'
+            ],
             response: {
                 message: '',
                 type: 'success',
@@ -209,6 +321,7 @@ export default {
             this.dialog = false;
             this.loadingDialog = true;
             try {
+                this.user.phone = await this.unMask(this.user.phone);
                 let resp = await RegisterService.signUp(this.user);
                 this.response.message = resp.message;
                 if (resp.status == 200) this.response.type = 'success';
@@ -223,6 +336,17 @@ export default {
                 this.response.active = true;
                 this.user = {};
             }
+        },
+        unMask() {
+            if (!this.user.phone) return '';
+            var str = '';
+            for (var i = 0; i < this.user.phone.length; i++) {
+                let char = this.user.phone.charAt(i);
+                console.log(char);
+                if (char != '(' && char != ')' && char != '-' && char != ' ')
+                    str += char;
+            }
+            return str;
         }
     }
 };

@@ -17,7 +17,7 @@
                     x-large
                     color="teal"
                     class="mt-5 white--text text-shadow shadow"
-                    to="/admin?sendImages"
+                    to="/admin?servicerequest"
                 >
                     Enviar Imagens
                     <v-icon right light>

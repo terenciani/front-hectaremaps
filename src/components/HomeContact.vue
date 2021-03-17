@@ -1,9 +1,9 @@
 <template>
     <v-container>
         <v-row align="center">
-            <v-col cols="12" class="display-2 text-center mb-5"
-                >Contate-nos</v-col
-            >
+            <v-col cols="12" class="display-2 text-center mb-5">{{
+                contactData.title
+            }}</v-col>
             <v-row class="pb-0 px-5 mb-0" justify="space-between">
                 <v-col cols="12" md="5">
                     <div class="text-h5">Entre em contato conosco</div>
@@ -11,35 +11,58 @@
                     <div class="text-subtitle-1 mb-5">
                         Para suporte ou qualquer questão envie um e-mail para
                         nós:
-                        <a href="mailto:hectaremaps@hectaremaps.com"
-                            >hectaremaps@hectaremaps.com</a
-                        >
+                        <a :href="`mailto:${contactData.email}`">{{
+                            contactData.email
+                        }}</a>
                     </div>
 
                     <div class="font-weight-medium text-h6">
                         <v-icon>mdi-google-maps</v-icon> Endereço
                     </div>
-                    <div class="text-subtitle-1 mb-5">Dourados-MS, Brasil</div>
+                    <div class="text-subtitle-1 mb-5">
+                        {{ contactData.address }}
+                    </div>
 
                     <div class="font-weight-medium text-h6">
                         <v-icon>mdi-phone</v-icon> Telefone
                     </div>
-                    <div class="text-subtitle-1 mb-5">+55 (67) 98167-9726</div>
+                    <div class="text-subtitle-1 mb-5">
+                        {{ contactData.phone }}
+                    </div>
 
-                    <div class="font-weight-medium text-h6">
+                    <div
+                        class="font-weight-medium text-h6"
+                        v-if="hasSocialNetwork"
+                    >
                         <v-icon>mdi-wan</v-icon> Nossas redes sociais
                     </div>
-                    <div class="text-subtitle-1 mb-5">
-                        <a href="#" class="social-network"
+                    <div class="text-subtitle-1 mb-5" v-if="hasSocialNetwork">
+                        <a
+                            v-if="contactData.instagram != ''"
+                            :href="contactData.instagram"
+                            class="social-network"
+                            target="_blank"
                             ><v-icon class="mr-3">mdi-instagram</v-icon></a
                         >
-                        <a href="#" class="social-network"
+                        <a
+                            v-if="contactData.twitter != ''"
+                            :href="contactData.twitter"
+                            class="social-network"
+                            target="_blank"
                             ><v-icon class="mr-3">mdi-twitter</v-icon></a
                         >
-                        <a href="#" class="social-network"
+                        <a
+                            v-if="contactData.facebook != ''"
+                            :href="contactData.facebook"
+                            class="social-network"
+                            target="_blank"
                             ><v-icon class="mr-3">mdi-facebook</v-icon></a
                         >
-                        <a href="#" class="social-network"
+                        <a
+                            v-if="contactData.pinterest != ''"
+                            :href="contactData.pinterest"
+                            class="social-network"
+                            target="_blank"
                             ><v-icon>mdi-pinterest</v-icon></a
                         >
                     </div>
@@ -147,9 +170,7 @@ export default {
         loadingDialog: false,
         nameRules: [
             v => !!v || 'O nome é obrigatório',
-            v =>
-                (v && v.length >= 10) ||
-                'O nome deve ter pelo menos 10 caracteres.'
+            v => /[a-zA-Z]/.test(v) || 'O nome deve possuir somente letras.'
         ],
         emailRules: [
             v => !!v || 'O e-mail é obrigatório',
@@ -167,6 +188,25 @@ export default {
             active: false
         }
     }),
+    computed: {
+        contactData() {
+            return this.$store.getters.getContact
+                ? this.$store.getters.getContact
+                : {};
+        },
+        hasSocialNetwork() {
+            if (!this.contactData) return false;
+
+            if (
+                this.contactData.instagram == '' &&
+                this.contactData.twitter == '' &&
+                this.contactData.facebook == '' &&
+                this.contactData.pinterest == ''
+            )
+                return false;
+            return true;
+        }
+    },
 
     methods: {
         async submit() {

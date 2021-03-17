@@ -1,8 +1,8 @@
 <template>
     <v-container>
         <v-row>
-            <v-col xs="12" class="display-2 text-center mb-5"
-                >Conheça Nossos Planos</v-col
+            <v-col xs="12" class="display-2 text-center mb-5">
+                {{ planData.title }}</v-col
             >
         </v-row>
         <v-row>
@@ -63,7 +63,7 @@
                                     <v-btn
                                         large
                                         color="primary accent-4"
-                                        to="/admin?plan"
+                                        to="/admin?plancontract"
                                     >
                                         Contratar
                                     </v-btn>
@@ -93,6 +93,13 @@ export default {
         async init() {
             this.plansAndItems = await PlanService.getAllPlansAndItems();
         } // init
+    },
+    computed: {
+        planData() {
+            return this.$store.getters.getPlan
+                ? this.$store.getters.getPlan
+                : {};
+        }
     },
     created() {
         this.init();

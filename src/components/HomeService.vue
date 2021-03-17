@@ -1,10 +1,13 @@
 <template>
-    <v-parallax :src="require('@/assets/bg_services.jpg')" height="700">
+    <v-parallax
+        :src="serviceData.background ? `${host}${serviceData.background}` : ''"
+        height="700"
+    >
         <v-container>
             <v-row class="mt-5">
-                <v-col xs="12" class="display-2 text-center mb-5"
-                    >Nossos Serviços</v-col
-                >
+                <v-col xs="12" class="display-2 text-center mb-5">{{
+                    serviceData.title
+                }}</v-col>
             </v-row>
             <v-row class="d-none d-sm-flex my-5" align="center">
                 <v-col xs="12">
@@ -99,6 +102,13 @@ export default {
         async init() {
             this.services = await ServicesService.getAll();
         } // init
+    },
+    computed: {
+        serviceData() {
+            return this.$store.getters.getService
+                ? this.$store.getters.getService
+                : {};
+        }
     },
     created() {
         this.init();
