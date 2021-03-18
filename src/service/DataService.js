@@ -2,11 +2,11 @@
 
 import API from '../Api';
 
-export default class HomeService {
+export default class DataService {
     static async getData() {
         try {
-            let homeData = await API.get('homedata');
-            return homeData.data;
+            let siteData = await API.get('sitedata');
+            return siteData.data;
         } catch (error) {
             throw error.response.data;
         }

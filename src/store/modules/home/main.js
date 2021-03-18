@@ -1,6 +1,6 @@
 'use strict';
 
-import HomeService from '../../../service/HomeService';
+import DataService from '../../../service/DataService';
 
 export default {
     state: {
@@ -11,7 +11,8 @@ export default {
         },
         about: {
             title: '',
-            text: ''
+            paragraph_one: '',
+            paragraph_two: ''
         },
         service: {
             title: '',
@@ -52,7 +53,8 @@ export default {
         },
         setAbout(state, payload) {
             state.about.title = payload.title;
-            state.about.text = payload.text;
+            state.about.paragraph_one = payload.paragraph_one;
+            state.about.paragraph_two = payload.paragraph_two;
         },
         setService(state, payload) {
             state.service.title = payload.title;
@@ -81,7 +83,8 @@ export default {
             state.hero.subtitle = '';
             state.hero.background = '';
             state.about.title = '';
-            state.about.text = '';
+            state.about.paragraph_one = '';
+            state.about.paragraph_two = '';
             state.service.title = '';
             state.service.background = '';
             state.video.title = '';
@@ -99,7 +102,7 @@ export default {
     actions: {
         async loadHomeData(context) {
             try {
-                let homeData = await HomeService.getData();
+                let homeData = await DataService.getData();
                 context.commit('setHero', homeData.hero);
                 context.commit('setAbout', homeData.about);
                 context.commit('setService', homeData.service);
