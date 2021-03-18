@@ -234,7 +234,6 @@
 
 <script>
 import RegisterService from '../service/RegisterService';
-
 export default {
     name: 'AppNavigation',
     data() {
@@ -321,7 +320,6 @@ export default {
             this.dialog = false;
             this.loadingDialog = true;
             try {
-                this.user.phone = await this.unMask(this.user.phone);
                 let resp = await RegisterService.signUp(this.user);
                 this.response.message = resp.message;
                 if (resp.status == 200) this.response.type = 'success';
@@ -336,17 +334,6 @@ export default {
                 this.response.active = true;
                 this.user = {};
             }
-        },
-        unMask() {
-            if (!this.user.phone) return '';
-            var str = '';
-            for (var i = 0; i < this.user.phone.length; i++) {
-                let char = this.user.phone.charAt(i);
-                console.log(char);
-                if (char != '(' && char != ')' && char != '-' && char != ' ')
-                    str += char;
-            }
-            return str;
         }
     }
 };
