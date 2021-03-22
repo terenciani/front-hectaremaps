@@ -2,9 +2,8 @@
     <v-parallax
         :src="videoData.background ? `${host}${videoData.background}` : ''"
         height="650"
-        class="py-5"
     >
-        <v-container>
+        <v-container class="py-5">
             <v-row align="center" justify="center">
                 <v-col cols="12" class="display-2 text-center mb-5"
                     >Equipamentos de Última Geração</v-col
@@ -53,4 +52,8 @@ export default {
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+.v-parallax__xs {
+    height: 100% !important;
+}
+</style>

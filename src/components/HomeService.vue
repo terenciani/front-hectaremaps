@@ -116,4 +116,8 @@ export default {
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+.v-parallax__xs {
+    height: 100% !important;
+}
+</style>

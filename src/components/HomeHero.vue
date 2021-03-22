@@ -5,12 +5,15 @@
         :src="heroData.background ? `${host}${heroData.background}` : ''"
         style="max-height: 100vh;"
     >
-        <v-row align="end" justify="center">
+        <v-row
+            :align="$vuetify.breakpoint.xs ? 'center' : 'end'"
+            justify="center"
+        >
             <v-col class="text-center" cols="12">
-                <h1 class="display-4 mb-4 text-shadow font-weight-thin">
+                <h1 class="display-3 mb-4 text-shadow font-weight-thin">
                     {{ heroData.title }}
                 </h1>
-                <h1 class="display-1 text-shadow mb-5">
+                <h1 class="subtitle-1 text-shadow mb-5">
                     {{ heroData.subtitle }}
                 </h1>
                 <v-btn
@@ -58,5 +61,8 @@ export default {
 }
 .shadow {
     box-shadow: 1px 0px 9px rgba(0, 0, 0, 0.94);
+}
+.v-parallax__xs {
+    height: 100% !important;
 }
 </style>
