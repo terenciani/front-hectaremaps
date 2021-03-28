@@ -2,6 +2,7 @@
     <v-parallax
         :src="videoData.background ? `${host}${videoData.background}` : ''"
         height="650"
+        :class="$vuetify.breakpoint.xs ? 'mobile' : ''"
     >
         <v-container class="py-5">
             <v-row align="center" justify="center">
@@ -52,8 +53,8 @@ export default {
 </script>
 
 <style scoped>
-.v-parallax__xs {
-    height: 100% !important;
+.mobile {
+    height: 100vh !important;
 }
 #video .container {
     padding: 2px !important;

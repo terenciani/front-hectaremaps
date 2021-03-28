@@ -73,7 +73,4 @@ export default {
 .shadow {
     box-shadow: 1px 0px 9px rgba(0, 0, 0, 0.94);
 }
-.v-parallax__xs {
-    height: 100% !important;
-}
 </style>

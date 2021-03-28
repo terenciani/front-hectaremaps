@@ -2,6 +2,7 @@
     <v-parallax
         :src="serviceData.background ? `${host}${serviceData.background}` : ''"
         height="700"
+        :class="$vuetify.breakpoint.xs ? 'mobile' : ''"
     >
         <v-container>
             <v-row class="mt-5">
@@ -120,7 +121,7 @@ export default {
 </script>
 
 <style scoped>
-.v-parallax__xs {
-    height: 100% !important;
+.mobile {
+    height: 100vh !important;
 }
 </style>

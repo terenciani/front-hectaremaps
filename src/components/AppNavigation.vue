@@ -2,6 +2,12 @@
     <span>
         <v-navigation-drawer app v-model="drawer" disable-resize-watcher>
             <v-list>
+                <v-img
+                    :src="`${host}/assets/icon/logo`"
+                    style="width:50%; margin: 0 auto;"
+                    alt="Logo"
+                />
+                <v-divider />
                 <template v-for="(item, index) in items">
                     <v-list-item link :key="index" :to="item.route">
                         <v-list-item-icon>
