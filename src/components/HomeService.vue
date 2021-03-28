@@ -37,7 +37,10 @@
                                         justify="space-around"
                                     >
                                         <v-col sm="6" md="6">
-                                            <v-card-title class="headline">
+                                            <v-card-title
+                                                class="headline"
+                                                v-if="serviceData.showprice"
+                                            >
                                                 {{
                                                     utilFormatter.numberToMoney(
                                                         service.price

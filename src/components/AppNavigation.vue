@@ -38,7 +38,19 @@
                 @click="drawer = !drawer"
             ></v-app-bar-nav-icon>
             <v-spacer class="hidden-md-and-up"></v-spacer>
-
+            <router-link
+                to="/"
+                class="hidden-sm-and-down"
+                v-if="heroData.shownavigationlogo"
+            >
+                <v-img
+                    :src="`${host}/assets/icon/logo`"
+                    contain
+                    max-height="50px"
+                    max-width="100px"
+                    class="mr-2"
+                ></v-img>
+            </router-link>
             <v-toolbar-items>
                 <v-btn
                     v-for="(item, index) in items"
@@ -234,11 +246,13 @@
 
 <script>
 import RegisterService from '../service/RegisterService';
+import config from '../../config';
 export default {
     name: 'AppNavigation',
     data() {
         return {
             user: {},
+            host: config.apiHost,
             dialog: false,
             valid: true,
             show: false,
@@ -334,6 +348,13 @@ export default {
                 this.response.active = true;
                 this.user = {};
             }
+        }
+    },
+    computed: {
+        heroData() {
+            return this.$store.getters.getHero
+                ? this.$store.getters.getHero
+                : {};
         }
     }
 };

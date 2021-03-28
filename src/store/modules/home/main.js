@@ -4,10 +4,17 @@ import DataService from '../../../service/DataService';
 
 export default {
     state: {
+        icon: {
+            logo: '',
+            favicon: ''
+        },
         hero: {
             title: '',
             subtitle: '',
-            background: ''
+            background: '',
+            position: 'end',
+            shownavigationlogo: false,
+            showlogo: false
         },
         about: {
             title: '',
@@ -16,10 +23,12 @@ export default {
         },
         service: {
             title: '',
-            background: ''
+            background: '',
+            showprice: false
         },
         plan: {
-            title: ''
+            title: '',
+            showprice: false
         },
         video: {
             title: '',
@@ -38,6 +47,7 @@ export default {
         }
     },
     getters: {
+        getIcon: state => state.icon,
         getHero: state => state.hero,
         getAbout: state => state.about,
         getService: state => state.service,
@@ -46,10 +56,17 @@ export default {
         getContact: state => state.contact
     },
     mutations: {
+        setIcon(state, payload) {
+            state.icon.logo = payload.logo;
+            state.icon.favicon = payload.favicon;
+        },
         setHero(state, payload) {
             state.hero.title = payload.title;
             state.hero.subtitle = payload.subtitle;
             state.hero.background = payload.background;
+            state.hero.position = payload.position;
+            state.hero.shownavigationlogo = payload.shownavigationlogo;
+            state.hero.showlogo = payload.showlogo;
         },
         setAbout(state, payload) {
             state.about.title = payload.title;
@@ -59,9 +76,11 @@ export default {
         setService(state, payload) {
             state.service.title = payload.title;
             state.service.background = payload.background;
+            state.service.showprice = payload.showprice;
         },
         setPlan(state, payload) {
             state.plan.title = payload.title;
+            state.plan.showprice = payload.showprice;
         },
         setVideo(state, payload) {
             state.video.title = payload.title;
@@ -81,12 +100,18 @@ export default {
         reloadHome(state) {
             state.hero.title = '';
             state.hero.subtitle = '';
+            state.hero.position = 'end';
+            state.hero.shownavigationlogo = true;
+            state.hero.showlogo = true;
             state.hero.background = '';
             state.about.title = '';
             state.about.paragraph_one = '';
             state.about.paragraph_two = '';
             state.service.title = '';
             state.service.background = '';
+            state.service.showprice = false;
+            state.plan.showprice = false;
+            state.plan.title = '';
             state.video.title = '';
             state.video.src = '';
             state.video.background = '';
@@ -103,6 +128,7 @@ export default {
         async loadHomeData(context) {
             try {
                 let homeData = await DataService.getData();
+                context.commit('setIcon', homeData.icon);
                 context.commit('setHero', homeData.hero);
                 context.commit('setAbout', homeData.about);
                 context.commit('setService', homeData.service);

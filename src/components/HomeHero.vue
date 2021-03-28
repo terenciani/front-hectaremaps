@@ -6,14 +6,25 @@
         style="max-height: 100vh;"
     >
         <v-row
-            :align="$vuetify.breakpoint.xs ? 'center' : 'end'"
+            :align="$vuetify.breakpoint.xs ? 'center' : heroData.position"
             justify="center"
+            class="pt-5"
         >
             <v-col class="text-center" cols="12">
-                <h1 class="display-3 mb-4 text-shadow font-weight-thin">
+                <div
+                    class="d-flex flex-column justify-space-between align-center"
+                    v-if="heroData.showlogo"
+                >
+                    <v-img
+                        max-width="200"
+                        centered
+                        :src="`${host}icon/logo`"
+                    ></v-img>
+                </div>
+                <h1 class="display-3 mb-4 text-shadow font-weight-regular">
                     {{ heroData.title }}
                 </h1>
-                <h1 class="subtitle-1 text-shadow mb-5">
+                <h1 class="display-1 text-shadow mb-5 font-weight-light">
                     {{ heroData.subtitle }}
                 </h1>
                 <v-btn
@@ -44,7 +55,7 @@ export default {
         heroData() {
             return this.$store.getters.getHero
                 ? this.$store.getters.getHero
-                : {};
+                : { position: 'bottom' };
         }
     }
 };

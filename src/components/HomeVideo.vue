@@ -9,12 +9,11 @@
                     >Equipamentos de Última Geração</v-col
                 >
                 <v-col cols="12" md="8">
-                    <v-card
-                        color="teal lighten-2"
-                        dark
-                        v-if="videoSources.length > 0"
-                    >
-                        <vue-video :sources="videoSources"></vue-video>
+                    <v-card dark v-if="videoSources.length > 0">
+                        <vue-video
+                            id="#video"
+                            :sources="videoSources"
+                        ></vue-video>
                     </v-card>
                 </v-col>
             </v-row>
@@ -55,5 +54,8 @@ export default {
 <style scoped>
 .v-parallax__xs {
     height: 100% !important;
+}
+#video .container {
+    padding: 2px !important;
 }
 </style>
