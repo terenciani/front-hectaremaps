@@ -135,6 +135,7 @@ export default {
                 context.commit('setPlan', homeData.plan);
                 context.commit('setVideo', homeData.video);
                 context.commit('setContact', homeData.contact);
+                document.title = homeData.company;
             } catch (error) {
                 context.commit('reloadHome');
                 console.log(error);
